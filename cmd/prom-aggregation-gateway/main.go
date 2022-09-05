@@ -235,7 +235,9 @@ func (a *aggate) parseAndMerge(r io.Reader, jobId string) error {
 	a.familiesLock.Lock()
 	defer a.familiesLock.Unlock()
 	jobLabel := "pushJobId"
-	a.pushJobsTimestamps[jobId] = makeTimestampSec()
+	if jobId != "" {
+		a.pushJobsTimestamps[jobId] = makeTimestampSec()
+	}
 
 	for name, family := range inFamilies {
 		// Sort labels in case source sends them inconsistently and add pushJobId label
