@@ -360,7 +360,7 @@ func main() {
 	cors := flag.String("cors", "*", "The 'Access-Control-Allow-Origin' value to be returned.")
 	pushPath := flag.String("push-path", "/metrics/", "HTTP path to accept pushed metrics.")
 	timeToLive := flag.Duration("ttl", 4*time.Hour, "How long stale metrics will live (default 4h)")
-	cleanupInterval := flag.Duration("cleanup-interval", 1*time.Hour, "How frequently to attempt to cleanup old jobs metrics (default 1h)")
+	cleanupInterval := flag.Duration("cleanup-interval", 30*time.Minute, "How frequently to attempt to cleanup old jobs metrics (default 30m)")
 	flag.Parse()
 
 	a := newAggate(*timeToLive, *cleanupInterval)
