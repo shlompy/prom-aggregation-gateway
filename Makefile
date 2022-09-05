@@ -57,8 +57,8 @@ ifeq ($(BUILD_IN_CONTAINER),true)
 $(EXES) lint test: aggate-build/$(UPTODATE)
 	@mkdir -p $(shell pwd)/.pkg
 	$(SUDO) docker run $(RM) -ti \
-		-v $(shell pwd)/.pkg:/go/pkg \
-		-v $(shell pwd):/go/src/github.com/weaveworks/prom-aggregation-gateway \
+		-v $(shell pwd)/.pkg:/go/pkg:Z \
+		-v $(shell pwd):/go/src/github.com/weaveworks/prom-aggregation-gateway:Z \
 		-e CIRCLECI -e CIRCLE_BUILD_NUM -e CIRCLE_NODE_TOTAL -e CIRCLE_NODE_INDEX -e COVERDIR \
 		$(IMAGE_PREFIX)/aggate-build $@
 
