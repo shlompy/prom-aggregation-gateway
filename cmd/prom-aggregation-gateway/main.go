@@ -315,6 +315,8 @@ func (a *aggate) cleanupFamily(metrics []*dto.Metric, ttl time.Duration) ([]*dto
 					metricsDeleted++
 				}
 			}
+		} else {
+			updatedMetrics = append(updatedMetrics, metric)
 		}
 	}
 
